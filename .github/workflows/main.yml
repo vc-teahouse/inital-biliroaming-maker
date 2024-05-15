@@ -23,6 +23,9 @@ jobs:
     steps:
       - name: setup java runtime
         uses: actions/setup-java@v3
+        with:
+          distribution: 'temurin' # See 'Supported distributions' for available options
+          java-version: '17'
 
       # Runs a single command using the runners shell
       - name: Run a one-line script
