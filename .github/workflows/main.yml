@@ -24,7 +24,7 @@ jobs:
       - name: Get files
         run: |
           echo Downloading vanilla apk
-          wget https://github.com/luyanci/inital-biliroaming-maker/releases/download/vanlia/${{ env.apkfile }}.apk
+          wget https://github.com/${{ github.repository }}/releases/download/vanlia/${{ env.apkfile }}.apk
           echo Downloading patches
           wget https://github.com/BiliRoamingX/BiliRoamingX/releases/download/v${{ env.ver }}/BiliRoamingX-patches-${{ env.ver }}.jar -O patches.jar
           wget https://github.com/BiliRoamingX/BiliRoamingX/releases/download/v${{ env.ver }}/BiliRoamingX-integrations-${{ env.ver }}.apk -Ointegrations.apk
