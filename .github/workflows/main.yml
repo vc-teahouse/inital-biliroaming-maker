@@ -8,22 +8,19 @@ on:
 jobs:
   build:
     strategy:
-      max-parallel: 4
       fail-fast: false
       matrix:
         apkname: [bilibili-play,iBiliPlayer-CN-HD,iBiliPlayer-CN]
     env:
-      ver: 1.20.3
+      ver: 1.20.3 #billroamingX version
       apkfile: ${{ matrix.apkname }}
-    # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: setup java runtime
         uses: actions/setup-java@v4
         with:
-          distribution: 'temurin' # See 'Supported distributions' for available options
+          distribution: 'temurin'
           java-version: '17'
           java-package: 'jre'
       - name: Get files
