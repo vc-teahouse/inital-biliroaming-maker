@@ -31,7 +31,7 @@ on:
           echo Downloading modified revanced-cli
           wget https://github.com/zjns/revanced-cli/releases/download/latest/revanced-cli.jar
       - name: Build Patched apk
-        run: java -jar revanced-cli.jar patch --merge integrations.apk --patch-bundle patches.jar --signing-levels 2,3  .apk
+        run: java -jar revanced-cli.jar patch --merge integrations.apk --patch-bundle patches.jar --signing-levels 2,3 { env.apkfile }.apk
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo Hello, world!
