@@ -42,7 +42,7 @@ jobs:
           name: ${{ env.apkfile }}-patched
           path: ./${{ env.apkfile }}-patched.apk
       - name: Release
-        if: ${{ env.torelease }}
+        if: ${{ 'env.torelease' == true }}
         uses: softprops/action-gh-release@v2
         with:
             name: 'Patched-${{ env.TIME }}.${{ github.run_number }}'
