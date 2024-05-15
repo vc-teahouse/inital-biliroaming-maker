@@ -1,27 +1,37 @@
-# This is a basic workflow to help you get started with Actions
+name: Build apk
 
-name: CI
-
-# Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
     branches: [ "main" ]
-  # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
   build:
+    env:
+      ver: 1.20.3
+      apkfile: bilibili-play
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v4
-
+      - name: setup java runtime
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin' # See 'Supported distributions' for available options
+          java-version: '17'
+          java-package: 'jre'
+      - name: Get files
+        run: |
+          echo Downloading vanilla apk
+          wget https://github.com/${{ github.repository }}/releases/download/vanlia/${{ env.apkfile }}.apk
+          echo Downloading patches
+          wget https://github.com/BiliRoamingX/BiliRoamingX/releases/download/v${{ env.ver }}/BiliRoamingX-patches-${{ env.ver }}.jar -O patches.jar
+          wget https://github.com/BiliRoamingX/BiliRoamingX/releases/download/v${{ env.ver }}/BiliRoamingX-integrations-${{ env.ver }}.apk -Ointegrations.apk
+          echo Downloading modified revanced-cli
+          wget https://github.com/zjns/revanced-cli/releases/download/v4.6.0.1/revanced-cli.jar
+      - name: Build Patched apk
+        run: java -jar revanced-cli.jar patch --merge integrations.apk --patch-bundle patches.jar --signing-levels 2,3 ${{ env.apkfile }}.apk
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo Hello, world!
