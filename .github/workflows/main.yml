@@ -7,9 +7,14 @@ on:
 
 jobs:
   build:
+    strategy:
+      max-parallel: 4
+      fail-fast: false
+      matrix:
+        apkname: [bilibili-play,iBiliPlayer-CN-HD,iBiliPlayer-CN]
     env:
       ver: 1.20.3
-      apkfile: bilibili-play
+      apkfile: ${{ matrix.apkname }}
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
