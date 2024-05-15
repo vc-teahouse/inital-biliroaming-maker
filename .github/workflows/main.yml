@@ -1,8 +1,6 @@
 name: Build apk
 
 on:
-  push:
-    branches: [ "main" ]
   workflow_dispatch:
 
 jobs:
@@ -10,13 +8,16 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        apkname: [bilibili-play,iBiliPlayer-CN-HD,iBiliPlayer-CN]
+        apkname: [bilibili-play,iBiliPlayer-CN-HD,iBiliPlayer-CN]  #List of vanilla apk
     env:
-      ver: 1.20.3 #billroamingX version
+      ver: 1.20.3 #the billroamingX version
       apkfile: ${{ matrix.apkname }}
     runs-on: ubuntu-latest
-
     steps:
+      - name: Get Current Time
+        run: |
+          TIME=$(date +"%Y%m%d")
+          echo "TIME=$TIME" >> $GITHUB_ENV
       - name: Setup JRE
         uses: actions/setup-java@v4
         with:
@@ -39,3 +40,10 @@ jobs:
         with:
           name: ${{ env.apkfile }}-patched
           path: ./${{ env.apkfile }}-patched.apk
+      - name: Release
+        uses: softprops/action-gh-release@v2
+        with:
+            name: 'Patched-${{ env.TIME }}.${{ github.run_number }}'
+            tag_name: 'v${{ env.TIME }}.${{ github.run_number }}'
+            files: ./${{ env.apkfile }}-patched.apk
+
