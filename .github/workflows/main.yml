@@ -29,7 +29,7 @@ jobs:
           wget https://github.com/BiliRoamingX/BiliRoamingX/releases/download/v${{ env.ver }}/BiliRoamingX-patches-${{ env.ver }}.jar -O patches.jar
           wget https://github.com/BiliRoamingX/BiliRoamingX/releases/download/v${{ env.ver }}/BiliRoamingX-integrations-${{ env.ver }}.apk -Ointegrations.apk
           echo Downloading modified revanced-cli
-          wget https://github.com/zjns/revanced-cli/releases/download/latest/revanced-cli.jar
+          wget https://github.com/zjns/revanced-cli/releases/download/v4.6.0.1/revanced-cli.jar
       - name: Build Patched apk
         run: java -jar revanced-cli.jar patch --merge integrations.apk --patch-bundle patches.jar --signing-levels 2,3 ${{ env.apkfile }}.apk
       # Runs a single command using the runners shell
