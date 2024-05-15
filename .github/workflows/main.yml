@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: setup java runtime
+      - name: Setup JRE
         uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
@@ -38,13 +38,4 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: ${{ env.apkfile }}-patched
-          path: ${{ env.apkfile }}-patched.apk
-      # Runs a single command using the runners shell
-      - name: Run a one-line script
-        run: echo Hello, world!
-
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
+          path: ./${{ env.apkfile }}-patched.apk
