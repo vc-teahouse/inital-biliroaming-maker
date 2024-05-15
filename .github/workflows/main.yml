@@ -32,6 +32,11 @@ jobs:
           wget https://github.com/zjns/revanced-cli/releases/download/v4.6.0.1/revanced-cli.jar
       - name: Build Patched apk
         run: java -jar revanced-cli.jar patch --merge integrations.apk --patch-bundle patches.jar --signing-levels 2,3 ${{ env.apkfile }}.apk
+      - name: Upload
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ env.apkfile }}-patched
+          path: ${{ env.apkfile }}-patched.apk
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo Hello, world!
