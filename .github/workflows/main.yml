@@ -47,5 +47,6 @@ jobs:
         with:
             name: 'Patched-${{ env.TIME }}.${{ github.run_number }}'
             tag_name: 'v${{ env.TIME }}.${{ github.run_number }}'
+            body: 'Patched-${{ env.TIME }}.${{ github.run_number }} with:BiliRoamingX:v${{ env.ver }}'
             files: ./${{ env.apkfile }}-patched.apk
 
