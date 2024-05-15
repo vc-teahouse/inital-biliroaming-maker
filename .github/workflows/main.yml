@@ -16,7 +16,7 @@ on:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       - name: setup java runtime
-        uses: actions/setup-java@v3
+        uses: actions/setup-java@v4
         with:
           distribution: 'temurin' # See 'Supported distributions' for available options
           java-version: '17'
@@ -24,7 +24,7 @@ on:
       - name: Get files
         run: |
           echo Downloading vanilla apk
-          wget https://github.com/luyanci/initial-roam/releases/download/v${ env.ver }/BiliRoamingX-integrations-${ env.ver }.apk
+          wget https://github.com/luyanci/initial-biliroaming-maker/releases/download/vanlia/${ env.apkfile }.apk
           echo Downloading patches
           wget https://github.com/BiliRoamingX/BiliRoamingX/releases/download/v${ env.ver }/BiliRoamingX-patches-${ env.ver }.jar -O patches.jar
           wget https://github.com/BiliRoamingX/BiliRoamingX/releases/download/v${ env.ver }/BiliRoamingX-integrations-${ env.ver }.apk -Ointegrations.apk
