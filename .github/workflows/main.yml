@@ -12,7 +12,7 @@ jobs:
     env:
       ver: 1.21.1 #the billroamingX version
       apkfile: ${{ matrix.apkname }}
-      torelease: false
+      torelease: true
     runs-on: ubuntu-latest
     steps:
       - name: Get Current Time
