@@ -2,7 +2,7 @@ name: Build apk
 
 on:
   workflow_dispatch:
-
+  push:
 jobs:
   build:
     strategy:
@@ -10,7 +10,7 @@ jobs:
       matrix:
         apkname: [bilibili-play,iBiliPlayer-CN-HD,iBiliPlayer-CN]  #List of vanilla apk
     env:
-      ver: 1.21.1 #the billroamingX version
+      ver: 1.22.0 #the billroamingX version
       apkfile: ${{ matrix.apkname }}
       torelease: true
     runs-on: ubuntu-latest
