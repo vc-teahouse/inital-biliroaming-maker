@@ -10,7 +10,7 @@ jobs:
       matrix:
         apkname: [bilibili-play,iBiliPlayer-CN-HD,iBiliPlayer-CN]  #List of vanilla apk
     env:
-      ver: 1.22.2 #the billroamingX version
+      ver: 1.22.3 #the billroamingX version
       apkfile: ${{ matrix.apkname }}
       torelease: true
     runs-on: ubuntu-latest
